@@ -32,5 +32,4 @@ for inc in increments:
             right = right + right_inc
     multiplied_trees = multiplied_trees * trees
 
-    print(right_inc, down_inc, trees)
 print(multiplied_trees)
