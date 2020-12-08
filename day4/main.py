@@ -42,7 +42,7 @@ def hgt(value):
     return True if ((cm and cm_val >= 150 and cm_val <= 193) or (inches and in_val >= 59 and in_val <= 76)) else False
 
 def hcl(value):
-    return True if re.search(r'^a[0-9,a-f]{6}$', value) else False
+    return True if re.search(r'^#[0-9,a-f]{6}$', value) else False
 
 allowed_ecl = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 def ecl(value):
@@ -61,7 +61,7 @@ def is_valid_values(passport):
     filtered_keys = list(filter(lambda x: x != 'cid', keys))
     return True if (
         (len(filtered_keys) == 7) and
-        all(True for key in filtered_keys if ((key in required) and checks[key](passport[key])))
+        all(True if ((key in required) and checks[key](passport[key])) else False for key in filtered_keys)
     ) else False
 
 print(sum(1 for item in input_dicts if is_valid_values(item)))
