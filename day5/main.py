@@ -16,8 +16,17 @@ def find_seat(dimension, max, letter):
 
 seats = [(find_seat(i[0], 127, 'F'), find_seat(i[1], 7, 'L')) for i in input_split]
 
-seat_ids = [ int((seat[0] * 8) + seat[1]) for seat in seats]
+seat_ids = [int((seat[0] * 8) + seat[1]) for seat in seats]
 
 print(max(seat_ids))
 
 ######## PART 2 ############
+
+my_seat_id = 0
+
+for seat_id in seat_ids:
+    if ((seat_id + 2 in seat_ids) and (seat_id + 1 not in seat_ids)):
+        my_seat_id = seat_id + 1
+        break
+
+print(my_seat_id)
