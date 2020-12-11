@@ -18,18 +18,18 @@ def check(contents):
 
 colours = []
 
-def check_contents(contents):
+def check_contents(contents, original_bag):
     for content in contents:
         contents_contain = bag_to_contents.get(content, [])
         if check(contents_contain):
-            colours.append(content)
+            colours.append(original_bag)
         elif contents_contain:
-            check_contents(contents_contain)
+            check_contents(contents_contain, original_bag)
 
 for bag, contents in bag_to_contents.items():
     if 'shinygold' in contents:
         colours.append(bag)
     else:
-        check_contents(contents)
+        check_contents(contents, bag)
 
 print(len(set(colours)))
