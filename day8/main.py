@@ -5,14 +5,14 @@ def clean(rule):
     action, value = rule.split(' ')
     return (action, value)
 
-input_enum = [{idx: clean(rule)} for idx, rule in enumerate(input)]
+input_enum = {idx: clean(rule) for idx, rule in enumerate(input)}
 
 rules_already_seen = []
 
-def endless_recursion(rule, acc):
-    idx = list(rule.keys())[0]
-    idx_int = int(idx)
-    action, value = rule[idx]
+def endless_recursion(idx, acc):
+    action, value = input_enum[idx]
+
+    next_idx = idx + int(value) if action == 'jmp' else idx + 1
 
     rules_already_seen.append(idx)
 
@@ -22,22 +22,11 @@ def endless_recursion(rule, acc):
 
     if action == 'acc':
         acc = acc + int(value)
-        endless_recursion(input_enum[idx_int + 1], acc)
-    elif action == 'jmp':
-        endless_recursion(input_enum[idx_int + int(value)], acc)
-    else:
-        endless_recursion(input_enum[idx_int + 1], acc)
+    endless_recursion(next_idx, acc)
 
-endless_recursion(input_enum[0], 0)
+endless_recursion(0, 0)
 
 ############# PART 2 ###################
-
-
-def clean(rule):
-    action, value = rule.split(' ')
-    return (action, value)
-
-input_enum = {idx: clean(rule) for idx, rule in enumerate(input)}
 
 def endless_recursion_with_exit(idx, acc, temp_input_enum, rules_already_seen):
     rules_already_seen.append(idx)
