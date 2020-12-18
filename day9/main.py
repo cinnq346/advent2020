@@ -11,3 +11,17 @@ for idx, num in enumerate(input_num):
         if check(num, input_num[(idx-25):idx]) == False:
             print(num)
             break
+
+
+################ PART 2 #################
+## 144381670
+
+for idx, num in enumerate(input_num):
+    total = num
+    for inner_num in input_num[idx:]:
+        total = total + inner_num
+        if total == 144381670:
+            print('ha')
+            break
+        elif total > 144381670:
+            break
