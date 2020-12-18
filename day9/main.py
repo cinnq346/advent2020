@@ -18,10 +18,12 @@ for idx, num in enumerate(input_num):
 
 for idx, num in enumerate(input_num):
     total = num
-    for inner_num in input_num[idx:]:
+    sequence = [num]
+    for inner_num in input_num[idx+1:]:
         total = total + inner_num
+        sequence.append(inner_num)
         if total == 144381670:
-            print('ha')
+            print(min(sequence) + max(sequence))
             break
         elif total > 144381670:
             break
