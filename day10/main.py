@@ -1,7 +1,7 @@
 with open('input.txt', 'r') as f:
     input = f.read().splitlines()
 
-input_num = sorted([int(num) for num in input])
+input_num = [0] + sorted([int(num) for num in input])  # the 0 is from the charging outlet
 
 ones = 0
 threes = 1 # because we always have a diff of 3 between built-in joltage adaptor and highest other adaptor
